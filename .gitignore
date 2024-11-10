@@ -1,5 +1,5 @@
 # Ignore .env file in backend folder
-backend/.env
+# backend/.env
 
 
 # Ignore the entire frontend folder
