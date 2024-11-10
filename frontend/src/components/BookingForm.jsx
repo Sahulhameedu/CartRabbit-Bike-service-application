@@ -32,6 +32,7 @@ const BookingForm = ({ services, onNewBooking, token }) => {
       setSelectedServices([]);
       setDate("");
     } catch (error) {
+      console.log(error);
       setError("Failed to create booking");
     }
   };

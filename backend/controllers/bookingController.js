@@ -1,6 +1,6 @@
 const Booking = require("../models/Booking");
 const Service = require("../models/Service");
-const transporter = require("../config/emailService");
+const { transporter } = require("../config/emailService");
 const mongoose = require("mongoose");
 
 // Create a booking
@@ -39,8 +39,10 @@ exports.createBooking = async (req, res) => {
       text: `A new booking has been created on ${date}.`,
     });
 
+
     res.status(201).json(populatedBooking);
   } catch (error) {
+    console.log(error);
     res
       .status(400)
       .json({ error: "Failed to create booking", details: error.message });
@@ -54,7 +56,7 @@ exports.updateBookingStatus = async (req, res) => {
       { status: req.body.status },
       { new: true }
     )
-      .populate("customerId") 
+      .populate("customerId")
       .populate("serviceIds");
     // Notify customer if status is 'ready for delivery'
     if (booking.status === "ready for delivery") {
@@ -65,6 +67,7 @@ exports.updateBookingStatus = async (req, res) => {
         subject: "Booking Ready for Delivery",
         text: `Your bike service is ready for delivery. Please pick it up at your convenience.`,
       });
+     
     }
     res.json(booking);
   } catch (error) {
