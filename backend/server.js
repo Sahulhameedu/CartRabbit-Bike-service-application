@@ -1,11 +1,14 @@
-const express = require('express');
-const connectDB = require('./config/db');
-const authRoutes = require('./routes/authRoutes');
-const serviceRoutes = require('./routes/serviceRoutes');
-const bookingRoutes = require('./routes/bookingRoutes');
+const express = require('express'); 
+const cors = require("cors"); // used to cross origin 
+const connectDB = require('./config/db'); // To configure Database
+const authRoutes = require('./routes/authRoutes'); // authRoutes
+const serviceRoutes = require('./routes/serviceRoutes'); // serviceRoutes
+const bookingRoutes = require('./routes/bookingRoutes'); // bookingRoutes
 
 const app = express();
-app.use(express.json());
+app.use(express.json()); // to parse incoming data (middleware)
+
+app.use(cors()); 
 
 connectDB();
 

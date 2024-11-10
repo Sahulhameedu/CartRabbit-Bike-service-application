@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+//Service Schema refer user to organize the service for each user
 const serviceSchema = new mongoose.Schema({
     ownerId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     name: { type: String, required: true },
